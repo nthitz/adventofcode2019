@@ -4,11 +4,11 @@ const doTests = false
 
 const data = doTests ? tests : [input]
 
-function processCode(code) {
+function processCode(code, noun, verb) {
     const tokens = code.split(',')
-    tokens[1] = 12
-    tokens[2] = 2
-    console.log(tokens)
+    tokens[1] = noun
+    tokens[2] = verb
+    // console.log(tokens)
     let opcodeIndex = 0;
     let executing = true;
     while(executing) {
@@ -30,7 +30,17 @@ function processCode(code) {
             continue
         }
     }
-    console.log(tokens)
+    // console.log(tokens)
+    return tokens[0]
 }
 
-data.forEach(processCode)
+let target = 19690720
+
+for (let n = 0; n < 99; n++) {
+    for (let v = 0; v < 99; v++) {
+        const res = processCode(input, n, v)
+        if (res === target) {
+            console.log(n, v)
+        }
+    }
+}
